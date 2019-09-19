@@ -34,7 +34,7 @@ app.get('/simple2',function(req,res){
 
 
 // ==== use external file routes.js ====
-app.use('/', require('./routes'))
+// app.use('/', require('./routes'))
 // =====================================
 
 
@@ -45,4 +45,12 @@ app.use(function(req, res, next) {
 });
 // ==============================
 
-app.listen(9001);
+
+// app.listen(9001);
+
+
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
