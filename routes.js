@@ -15,7 +15,8 @@ router.route("/signup").post( async (req, res) => {
 
 router.route("/profile").get( async (req, res) => {
     var profile = await db.profile(req.query['email'])
-    res.send(profile);
+    if (profile) res.send(profile);
+    else res.send("email not found"); 
 });
 
 // router.route("/").get( (req, res) => res.send('Hello World!'));
