@@ -1,7 +1,7 @@
 const db = require("./db");
 const router = require("express").Router();
 
-router.route("/").get( (req, res) => res.send('Home Dir!'));
+router.route("/").get( (req, res) => res.sendFile(path.join(__dirname + '/index.html'));
 
 router.route("/params").get( (req, res) => {
     res.send(req.query);
