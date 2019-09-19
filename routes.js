@@ -2,14 +2,14 @@ var path = require('path');
 const db = require("./db");
 const router = require("express").Router();
 
-router.route("/").get( (req, res) => res.sendFile(path.join(__dirname + '/index.html')));
+router.route("/").get( (req, res) => res.send("Home Dir!"));
 
 router.route("/params").get( (req, res) => {
     res.send(req.query);
 });
 
 router.route("/signup").post( async (req, res) => {
-    await db.signup(req.body)
+    try {await db.signup(req.body)} catch {res.send('duplicated');}
     res.send('registered');
 });
 
@@ -19,7 +19,8 @@ router.route("/profile").get( async (req, res) => {
     else res.send("email not found"); 
 });
 
-// router.route("/").get( (req, res) => res.send('Hello World!'));
-// router.route("/").get( (req, res) => res.send('Hello World!'));
+
+router.route("/html").get( (req, res) => res.sendFile(path.join(__dirname + '/index.html')));
+
 
 module.exports = router;
